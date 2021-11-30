@@ -2,6 +2,7 @@
     "name": "maximago-antora-ui",
     "description": "An archetype project that produces a UI for creating documentation sites with Antora",
     "license": "ITS",
+    "private": true,
     "engines": {
         "node": ">= 8.0.0"
     },
