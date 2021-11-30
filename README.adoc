@@ -41,7 +41,7 @@ If you want to simply use the default UI for your Antora-generated site, add the
 ----
 ui:
   bundle:
-    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    url: http://gitlab.m.de/M.Tools/maximago-antora-ui/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
     snapshot: true
 ----
 
