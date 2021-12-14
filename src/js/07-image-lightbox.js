@@ -45,7 +45,7 @@ when lightbox is opened for inlined SVG:
   var config = (document.getElementById('site-script') || { dataset: {} }).dataset
   var content
 
-  function init() {
+  function init () {
     if (!lightbox) {
       lightbox = document.createElement('div')
       lightbox.setAttribute('aria-modal', 'true')
@@ -95,22 +95,22 @@ when lightbox is opened for inlined SVG:
     }
   }
 
-  function open() {
+  function open () {
     lightbox.style.display = 'block'
   }
 
-  function isOpen() {
+  function isOpen () {
     return lightbox && lightbox.style.display === 'block'
   }
 
-  function close(e) {
+  function close (e) {
     lightbox.style.display = 'none'
     content.firstChild.remove()
     // don't prevent default here, as that will allow links in SVGs to work
   }
 
   // depending on ratio of source vs target element, make the lightbox content 90% of height or width
-  function setImageSize(img, source, target) {
+  function setImageSize (img, source, target) {
     var ratioSource = source.offsetWidth / source.offsetHeight
     var ratioTarget = target.offsetWidth / target.offsetHeight
     if (ratioSource < ratioTarget) {
@@ -192,4 +192,4 @@ when lightbox is opened for inlined SVG:
       e.preventDefault()
     })
   })
-})()
+}) ()
