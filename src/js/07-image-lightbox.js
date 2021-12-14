@@ -39,7 +39,7 @@ when lightbox is opened for inlined SVG:
  */
 
 ;
-(function() {
+(function () {
     'use strict'
     var lightbox
     var config = (document.getElementById('site-script') || { dataset: {} }).dataset
@@ -51,7 +51,7 @@ when lightbox is opened for inlined SVG:
             lightbox.setAttribute('aria-modal', 'true')
             lightbox.className = 'modal'
             var closeLink = document.createElement('a')
-                // set href to make it selectable with tab / assistive technologies
+            // set href to make it selectable with tab / assistive technologies
             closeLink.href = '#'
             closeLink.className = 'close'
             closeLink.setAttribute('title', 'Close lightbox')
@@ -75,18 +75,18 @@ when lightbox is opened for inlined SVG:
             lightbox.appendChild(content)
             var body = document.getElementsByTagName('body')[0]
             body.appendChild(lightbox)
-            body.addEventListener('keydown', function(e) {
+            body.addEventListener('keydown', function (e) {
                 if (e.code === 'Escape' && isOpen()) {
                     close(e)
                 }
             })
 
             content.addEventListener('click', close)
-            closeLink.addEventListener('click', function(e) {
+            closeLink.addEventListener('click', function (e) {
                 close(e)
                 e.preventDefault()
             })
-            closeLink.addEventListener('keydown', function(e) {
+            closeLink.addEventListener('keydown', function (e) {
                 if (e.code === 'Space' || e.code === 'Enter') {
                     close(e)
                     e.preventDefault()
@@ -106,7 +106,7 @@ when lightbox is opened for inlined SVG:
     function close(e) {
         lightbox.style.display = 'none'
         content.firstChild.remove()
-            // don't prevent default here, as that will allow links in SVGs to work
+        // don't prevent default here, as that will allow links in SVGs to work
     }
 
     // depending on ratio of source vs target element, make the lightbox content 90% of height or width
@@ -120,14 +120,14 @@ when lightbox is opened for inlined SVG:
         }
     }
 
-    document.querySelectorAll('.imageblock img').forEach(function(element) {
+    document.querySelectorAll('.imageblock img').forEach(function (element) {
         if (element.parentNode.nodeName === 'A') {
             // if parent node is an anchor, keep the anchor instead of opening lightbox
             return
         }
         element.parentNode.className += ' lightbox'
         if (typeof element.parentNode.classList.remove === 'function') {
-            element.parentNode.addEventListener('mouseover', function(e) {
+            element.parentNode.addEventListener('mouseover', function (e) {
                 if (element.naturalWidth <= element.offsetWidth && element.naturalHeight <= element.offsetHeight) {
                     element.parentNode.classList.remove('lightbox')
                 } else {
@@ -135,7 +135,7 @@ when lightbox is opened for inlined SVG:
                 }
             })
         }
-        element.addEventListener('click', function(e) {
+        element.addEventListener('click', function (e) {
             if (element.naturalWidth <= element.offsetWidth && element.naturalHeight <= element.offsetHeight) {
                 // don't open lightbox is already shown at 100% or more
                 return
@@ -150,13 +150,13 @@ when lightbox is opened for inlined SVG:
         })
     })
 
-    document.querySelectorAll('.imageblock object').forEach(function(element) {
+    document.querySelectorAll('.imageblock object').forEach(function (element) {
         if (element.parentNode.nodeName === 'A') {
             // if parent node is an anchor, keep the anchor instead of opening lightbox
             return
         }
         element.parentNode.className += ' lightbox'
-        element.parentNode.addEventListener('click', function(e) {
+        element.parentNode.addEventListener('click', function (e) {
             init()
             var img = document.createElement('object')
             img.type = element.type
@@ -168,27 +168,27 @@ when lightbox is opened for inlined SVG:
                 img.style.pointerEvents = 'none'
             }
             content.appendChild(img)
-                // prevent links in SVGs to open, as this should only open the lightbox
+            // prevent links in SVGs to open, as this should only open the lightbox
             e.preventDefault()
         })
     })
-    document.querySelectorAll('.imageblock svg').forEach(function(element) {
+    document.querySelectorAll('.imageblock svg').forEach(function (element) {
         if (element.parentNode.nodeName === 'A') {
             // if parent node is an anchor, keep the anchor instead of opening lightbox
             return
         }
         element.parentNode.className += ' lightbox'
-        element.parentNode.addEventListener('click', function(e) {
+        element.parentNode.addEventListener('click', function (e) {
             init()
             var img = element.cloneNode(true)
             open()
-                // override height/width from cloned element
+            // override height/width from cloned element
             img.style.height = 'auto'
             img.style.width = 'auto'
-                // need to select element's parent node, as offsetWidth/offsetHeight not available on SVG
+            // need to select element's parent node, as offsetWidth/offsetHeight not available on SVG
             setImageSize(img, element.parentNode, content.parentNode)
             content.appendChild(img)
-                // prevent links in SVGs to open, as this should only open the lightbox
+            // prevent links in SVGs to open, as this should only open the lightbox
             e.preventDefault()
         })
     })
