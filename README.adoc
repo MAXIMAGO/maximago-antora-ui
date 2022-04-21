@@ -8,11 +8,6 @@ This project is derived from antora default ui.
 
 [source,yaml]
 ----
-ui:
-  bundle:
-    url: http://gitlab.m.de/M.Tools/maximago-antora-ui/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
-    snapshot: true
-----
 
 === Prerequisites
 
